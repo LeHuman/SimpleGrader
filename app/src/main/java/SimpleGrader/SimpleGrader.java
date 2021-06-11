@@ -6,10 +6,9 @@ import java.util.HashMap;
 import SimpleGrader.resource_converter.TestCases;
 
 public class SimpleGrader {
-    private static final String SECRETKEY = "Jumex";
-    private static final String VERSION = "V1.0";
     private static boolean ADMIN = false;
     private static HashMap<String, Test> tests;
+    private static int[] bender = { 1003700, 810111, 361667, 99027, 14666, 861, 650000 };
 
     private static void test(Paper paper, Test test)// TODO: check for timeout
             throws IOException, InterruptedException, FailedToCompileException {
@@ -90,8 +89,18 @@ public class SimpleGrader {
         System.out.println(str);
     }
 
+    private static String key() {
+        char[] str = new char[7];
+        for (int x = 0; x < str.length; x++) {
+            int a = (bender[0] * x - bender[1] * x * x + bender[2] * x * x * x - bender[3] * x * x * x * x
+                    + bender[4] * x * x * x * x * x - bender[5] * x * x * x * x * x * x + bender[6]) / 10000;
+            str[x] = (char) a;
+        }
+        return new String(str);
+    }
+
     public static void main(String[] args) throws IOException, InconsistentArrayLengthException, InterruptedException {
-        HashMap<String, Test> testMap = TestCases.getMap(SECRETKEY);
+        HashMap<String, Test> testMap = TestCases.getMap(key());
         tests = testMap;
 
         String testName;
@@ -105,7 +114,7 @@ public class SimpleGrader {
             return;
         }
 
-        if (args.length == 3 && args[2] != null && args[2].equals(SECRETKEY)) {
+        if (args.length == 3 && args[2] != null && args[2].equals(key())) {
             ADMIN = true;
             System.out.println("\n----------< ADMIN >----------");
         }
