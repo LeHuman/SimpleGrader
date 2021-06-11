@@ -1,4 +1,4 @@
-package simple_grader;
+package SimpleGrader;
 
 public final class InconsistentArrayLengthException extends Exception {
     private static final long serialVersionUID = -3504923198833444775L;

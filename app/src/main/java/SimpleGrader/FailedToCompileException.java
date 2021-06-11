@@ -1,4 +1,4 @@
-package simple_grader;
+package SimpleGrader;
 
 public class FailedToCompileException extends Exception {
     private static final long serialVersionUID = 5651126580803066672L;

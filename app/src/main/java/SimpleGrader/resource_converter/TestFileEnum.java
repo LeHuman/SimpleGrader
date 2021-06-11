@@ -1,4 +1,4 @@
-package simple_grader.resource_converter;
+package SimpleGrader.resource_converter;
 
 public enum TestFileEnum {
     QUESTIONS(0), ANSWERS(1);

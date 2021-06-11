@@ -1,9 +1,9 @@
-package simple_grader;
+package SimpleGrader;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-import simple_grader.resource_converter.TestCases;
+import SimpleGrader.resource_converter.TestCases;
 
 public class SimpleGrader {
     private static final String SECRETKEY = "Jumex";

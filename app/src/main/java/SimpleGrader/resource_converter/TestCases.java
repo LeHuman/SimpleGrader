@@ -1,4 +1,4 @@
-package simple_grader.resource_converter;
+package SimpleGrader.resource_converter;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,8 +18,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import simple_grader.InconsistentArrayLengthException;
-import simple_grader.Test;
+import SimpleGrader.InconsistentArrayLengthException;
+import SimpleGrader.Test;
 
 public final class TestCases {
 

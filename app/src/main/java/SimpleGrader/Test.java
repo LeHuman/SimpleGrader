@@ -1,4 +1,4 @@
-package simple_grader;
+package SimpleGrader;
 
 import java.util.ArrayList;
 

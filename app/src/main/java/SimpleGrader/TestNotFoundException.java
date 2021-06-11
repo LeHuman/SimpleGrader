@@ -1,4 +1,4 @@
-package simple_grader;
+package SimpleGrader;
 
 public class TestNotFoundException extends Exception {
     private static final long serialVersionUID = 75958540576736564L;
