@@ -6,10 +6,22 @@
  * User Manual available at https://docs.gradle.org/7.0.2/userguide/building_java_projects.html
  */
 
-plugins {
-    id 'com.github.johnrengelman.shadow' version '7.0.0'
-    id 'java'
+// import proguard.gradle.ProGuardTask
+
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        // classpath 'com.guardsquare:proguard-gradle:7.1.0-beta5'
+        // classpath 'com.guardsquare:proguard-base:7.1.0-beta5'
+        classpath 'gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0'
+    }
 }
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
 
 repositories {
     mavenCentral()
@@ -23,15 +35,39 @@ dependencies {
     shadow 'org.apache.poi:poi-ooxml:5.0.0'
 }
 
+def outputJarName = 'SimpleGrader'
+// def dependsDir = "${buildDir}/libs/dependencies/"
+
 jar {
-    baseName = 'SimpleGrader'
+    baseName = "${outputJarName}"
     manifest {
         attributes 'Main-Class': 'SimpleGrader.SimpleGrader'
     }
 }
 
 shadowJar {
-    archiveBaseName.set('SimpleGrader')
+    archiveBaseName.set("${outputJarName}")
     archiveClassifier.set('')
     archiveVersion.set('')
 }
+
+// task copyDepends(type: Copy) {
+//     from configurations.default
+//     into "${dependsDir}"
+// }
+
+// task proguard(type: proguard.gradle.ProGuardTask) {
+//     configuration 'proguard.conf'
+//     // injars shadowJar
+//     injars "${buildDir}/libs/${outputJarName}.jar"
+//     outjars "${buildDir}/libs/${outputJarName}-proguard.jar"
+//     // libraryjars files(configurations.shadow.collect())
+//     // libraryjars files(configurations.default.collect())
+//     libraryjars "${dependsDir}"
+// }
+
+build.dependsOn(shadowJar)
+// build.dependsOn(proguard)
+// proguard.dependsOn(copyDepends)
+// proguard.dependsOn(jar)
+// shadowJar.dependsOn(proguard)
